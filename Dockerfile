@@ -1,26 +1,17 @@
-# Stage 1: Build the Angular application
-FROM node:21.1.0-slim AS builder
+# Use an official Nginx image as a parent image
+FROM nginx:latest
 
-WORKDIR /usr/src/app
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy the package.json and package-lock.json files for dependency installation
-COPY package*.json ./
+# Copy your custom Nginx configuration
+COPY my-nginx.conf /etc/nginx/nginx.conf
 
-# Install the Node.js application dependencies
-RUN npm install --legacy-peer-deps
+# Copy the built Angular app files into the Nginx web server directory
+COPY dist/ /usr/share/nginx/html
 
-# Copy the rest of your application code (Angular source code)
-COPY . .
+# Expose port 80 for web traffic
+EXPOSE 80
 
-# Build the Angular application (assumes you have an npm script "build" defined in your package.json)
-RUN npm run build 
-
-# Define the command to start the application (it's optional and not used in this stage)
-CMD ["npm", "start"]
-
-# Stage 2: Create the Nginx image to serve the built app
-FROM nginx:alpine
-# Copy the Nginx configuration
-COPY src/ngnix/etc/conf.d/default.conf /etc/nginx/conf.d/default.conf
-# Copy the build artifacts from the builder stage
-COPY --from=builder ./usr/src/app/dist/summer-workshop-angular /usr/share/nginx/html
+# Start Nginx with the "daemon off;" option to run in the foreground
+CMD ["nginx", "-g", "daemon off;"]
