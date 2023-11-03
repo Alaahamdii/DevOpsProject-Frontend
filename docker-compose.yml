@@ -33,8 +33,6 @@ services:
   frontend:
     image: hamdiiala/devopsfront:latest
     container_name: angular-app
-    volumes:
-      - './:/usr/src/app'
     ports:
       - "4200:80"
     depends_on:
