@@ -6,8 +6,8 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      - MYSQL_DATABASE: "devops"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "devops"
     ports:
       - "3306:3306"
     volumes:
