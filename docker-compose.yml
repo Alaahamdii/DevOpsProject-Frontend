@@ -6,7 +6,7 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_DATABASE: "devops"
     ports:
       - "3306:3306"
@@ -20,9 +20,9 @@ services:
       - "8082:8082"
     restart: on-failure
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops?createDatabaseIfNotExist=true&useUnicode=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops
       SPRING_DATASOURCE_USERNAME: "root"
-      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_DATASOURCE_PASSWORD: ""
     depends_on:
       - mysql
     stdin_open: true
