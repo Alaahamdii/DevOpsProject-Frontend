@@ -21,7 +21,7 @@ CMD ["npm", "start"]
 # Stage 2: Create the Nginx image to serve the built app
 FROM nginx:alpine
 # Copy the Nginx configuration
-#COPY /my-nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d
 # Copy the build artifacts from the builder stage
 COPY --from=builder /app/dist/summer-workshop-angular/ /usr/share/nginx/html
 EXPOSE 80
