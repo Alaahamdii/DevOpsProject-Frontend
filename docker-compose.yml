@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: 'mysql:5.7'
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: "devops"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_db:/var/lib/mysql
+
+  backend:
+    image: hamdiiala/devopsbackend:latest
+    container_name: spring-boot-app
+    ports:
+      - "8082:8082"
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      - mysql
+    stdin_open: true
+    tty: true
+    volumes:
+      - .m2:/root/.m2
+
+  frontend:
+    image: hamdiiala/devopsfront:latest
+    container_name: angular-app
+    ports:
+      - "80:80"
+    expose:
+      - 80
+    depends_on:
+      - backend
+volumes:
+  mysql_db:
