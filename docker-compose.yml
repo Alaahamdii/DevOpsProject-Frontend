@@ -9,7 +9,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_DATABASE: "devops"
     ports:
-      - "3333:3306"
+      - "3333:3333"
     volumes:
       - mysql_db:/var/lib/mysql
 
