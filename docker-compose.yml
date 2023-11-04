@@ -20,7 +20,7 @@ services:
       - "8081:8082"
     restart: on-failure
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3333/devops
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: ""
     depends_on:
