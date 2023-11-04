@@ -34,7 +34,9 @@ services:
     image: hamdiiala/devopsfront:latest
     container_name: angular-app
     ports:
-      - "4200:80"
+      - "80:80"
+    expose:
+      - 80
     depends_on:
       - backend
 volumes:
