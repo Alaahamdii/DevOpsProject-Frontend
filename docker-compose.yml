@@ -39,5 +39,13 @@ services:
       - 80
     depends_on:
       - backend
+      
+  nginx-exporter:
+    image: "nginx/nginx-prometheus-exporter:latest"
+    command: ["-nginx.scrape-uri=http://frontend:80/metrics"]  
+    ports:
+      - "9113:9113"
+    depends_on:
+      - frontend
 volumes:
   mysql_db:
