@@ -27,19 +27,19 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['192.168.33.10:9090']
-
+      
   - job_name: 'jenkins'
     metrics_path: /prometheus
     scrape_interval: 5s
     static_configs:
       - targets: ['192.168.33.10:8080']
-
- - job_name: 'spring-boot'
+      
+  - job_name: 'spring-boot'
     scrape_interval: 5s 
     metrics_path: /actuator/prometheus   
     static_configs:
       - targets: ['192.168.33.10:8082'] 
-
+      
   - job_name: 'angular'
     scrape_interval: 5s
     metrics_path: /actuator/prometheus 
