@@ -9,7 +9,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_DATABASE: "devops"
     ports:
-      - "3333:3333"
+      - "3333:3306"
     volumes:
       - mysql_db:/var/lib/mysql
 
@@ -20,7 +20,7 @@ services:
       - "8081:8081"
     restart: on-failure
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3333/devops
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: ""
     depends_on:
