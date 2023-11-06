@@ -44,7 +44,7 @@ services:
     image: "nginx/nginx-prometheus-exporter:latest"
     command: ["-nginx.scrape-uri=http://angular-app:80/metrics"]  
     ports:
-      - "9113:9113"
+      - "9100:9100"
     depends_on:
       - frontend
 volumes:
